@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 100% 98%;
+    --foreground: 0 0% 10%;
+    --surface: 0 0% 100%;
+    --surface-muted: 36 100% 96%;
+    --border: 36 30% 88%;
+    --border-strong: 36 25% 78%;
+    --primary: 113 30% 24%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 99% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 40 100% 68%;
+    --accent-foreground: 0 69% 18%;
+    --heritage: 0 69% 18%;
+    --heritage-foreground: 0 0% 100%;
+    --muted: 36 33% 93%;
+    --muted-foreground: 30 10% 35%;
+    --success: 113 30% 24%;
+    --warning: 36 99% 47%;
+    --destructive: 0 57% 39%;
+    --ring: 36 99% 47%;
+  }
+
+  .dark {
+    --background: 120 15% 7%;
+    --foreground: 36 33% 94%;
+    --surface: 120 12% 12%;
+    --surface-muted: 120 10% 16%;
+    --border: 113 15% 22%;
+    --border-strong: 113 15% 30%;
+    --primary: 40 100% 68%;
+    --primary-foreground: 0 69% 18%;
+    --secondary: 36 99% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 113 30% 24%;
+    --accent-foreground: 0 0% 100%;
+    --heritage: 0 59% 26%;
+    --heritage-foreground: 0 60% 94%;
+    --muted: 120 12% 14%;
+    --muted-foreground: 113 10% 68%;
+    --success: 113 40% 55%;
+    --warning: 40 100% 68%;
+    --destructive: 0 84% 70%;
+    --ring: 40 100% 68%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background font-body text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--surface)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+  }
+}
