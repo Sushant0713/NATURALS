@@ -2,7 +2,9 @@ import { Footer } from '@/components/layout/footer';
 import { Navbar } from '@/components/layout/navbar';
 import { FeaturedCategoriesSection } from '@/components/home/categories-section';
 import {
+  BabySection,
   FeaturedProductsSection,
+  HeroNextSection,
   HeroProductShowcase,
   HeroSection,
 } from '@/components/home/hero-section';
@@ -24,6 +26,8 @@ export function HomePage() {
       <Navbar />
       <main>
         <HeroSection />
+        <HeroNextSection />
+        <BabySection />
         <HeroProductShowcase />
         <FeaturedCategoriesSection />
         <FeaturedProductsSection title="Featured Products" products={featuredProducts} />

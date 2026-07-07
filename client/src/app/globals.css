@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,6 +76,10 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-script {
+    font-family: 'Dancing Script', cursive, sans-serif;
   }
 
   .shimmer-bg {

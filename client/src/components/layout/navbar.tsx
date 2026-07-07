@@ -10,18 +10,13 @@ import { MiniCart } from '@/components/cart/mini-cart';
 import { useAuth } from '@/components/providers/auth-provider';
 import { useCart } from '@/components/providers/cart-provider';
 import { ThemeToggle } from '@/components/providers/theme-toggle';
-import { Button, Container, Icon, Typography } from '@/components/ui';
+import { Button, Container, Icon } from '@/components/ui';
 import { brand } from '@/constants/brand';
-import { categoryLabels, productCategories } from '@/constants/categories';
 import { routes } from '@/constants/routes';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
   { label: 'Home', href: routes.home },
-  ...Object.values(productCategories).map((slug) => ({
-    label: categoryLabels[slug],
-    href: `${routes.categories}/${slug}`,
-  })),
   { label: 'Our Story', href: '#our-story' },
   { label: 'Contact', href: `tel:${brand.contactPhone}` },
 ];
@@ -59,28 +54,30 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-normal',
+        'fixed inset-x-0 top-0 z-50 transition-all duration-normal backdrop-blur-md',
         isScrolled
-          ? 'border-b border-border/60 bg-surface/90 shadow-card backdrop-blur-lg'
-          : 'bg-transparent'
+          ? 'border-b border-white/10 bg-white/15 dark:bg-black/20 shadow-sm'
+          : 'border-b border-transparent bg-white/5 dark:bg-black/10'
       )}
     >
+      {/* Logo separated and absolute positioned at the top left corner */}
+      <Link href={routes.home} className="absolute left-1 sm:left-2 lg:left-2 -top-2 z-50 flex items-center">
+        <Image
+          src="/logo-clean.png"
+          alt={brand.name}
+          width={280}
+          height={112}
+          className="h-20 lg:h-24 w-auto object-contain"
+          placeholder="empty"
+          style={{ background: 'none' }}
+          priority
+        />
+      </Link>
+
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-18">
-          <Link href={routes.home} className="flex shrink-0 items-center gap-2">
-            <Image
-              src="/catalogue/page-01-img-02.png"
-              alt={brand.name}
-              width={40}
-              height={40}
-              className="size-9 rounded-full object-contain"
-            />
-            <div className="hidden sm:block">
-              <Typography variant="h6" as="span" className="leading-tight text-heritage dark:text-primary">
-                {brand.name}
-              </Typography>
-            </div>
-          </Link>
+          {/* Spacer to push menu items right and prevent logo overlap */}
+          <div className="mr-auto w-40 sm:w-56 lg:w-72 shrink-0" />
 
           <nav className="hidden items-center gap-1 xl:flex">
             {navLinks.map((link) => (
