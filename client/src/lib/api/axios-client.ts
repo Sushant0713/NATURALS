@@ -63,6 +63,72 @@ axiosInstance.interceptors.response.use(
 export async function apiRequest<T>(
   config: ApiRequestConfig
 ): Promise<ApiResponse<T>> {
-  const response = await axiosInstance.request<ApiResponse<T>>(config);
-  return response.data;
+  // Disconnect backend by returning mock responses for all requests
+  const url = config.url || '';
+  console.log(`[Mock API Client] Intercepting request: ${config.method} ${url}`, config.data);
+
+  let mockData: unknown = null;
+
+  if (url.includes('/auth/me')) {
+    mockData = {
+      id: 'mock-user-123',
+      name: 'Guest User',
+      email: 'guest@example.com',
+      role: 'user',
+    };
+  } else if (url.includes('/auth/login') || url.includes('/auth/register') || url.includes('/auth/refresh')) {
+    mockData = {
+      accessToken: 'mock-access-token-xyz',
+      user: {
+        id: 'mock-user-123',
+        name: 'Guest User',
+        email: 'guest@example.com',
+        role: 'user',
+      }
+    };
+  } else if (url.includes('/account/profile')) {
+    mockData = {
+      id: 'mock-user-123',
+      name: 'Guest User',
+      email: 'guest@example.com',
+      role: 'user',
+    };
+  } else if (url.includes('/account/wishlist')) {
+    mockData = [];
+  } else if (url.includes('/account/addresses') || url.includes('/checkout/addresses')) {
+    mockData = [];
+  } else if (url.includes('/account/reviews')) {
+    mockData = [];
+  } else if (url.includes('/account/coupons')) {
+    mockData = [];
+  } else if (url.includes('/account/notifications')) {
+    mockData = {
+      notifications: [],
+      pagination: { total: 0, pages: 0, page: 1, limit: 10 }
+    };
+  } else if (url.includes('/checkout/payment-config')) {
+    mockData = {
+      key: 'mock_razorpay_key',
+    };
+  } else if (url.includes('/checkout/orders')) {
+    mockData = {
+      id: 'order_mock123',
+      orderNumber: 'RN-' + Math.floor(Math.random() * 1000000),
+      amount: 1500,
+      currency: 'INR',
+      status: 'pending',
+    };
+  } else if (url.includes('/verify')) {
+    mockData = {
+      id: 'order_mock123',
+      orderNumber: 'RN-123456',
+      status: 'success',
+      paymentStatus: 'paid',
+    };
+  }
+
+  return {
+    success: true,
+    data: mockData as T,
+  };
 }

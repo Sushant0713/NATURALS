@@ -124,7 +124,8 @@ export const categoryShowcase = [
   {
     slug: 'baby-satva',
     tagline: 'Specially made for your baby\'s nutrition',
-    image: '/catalogue/page-03-full.png',
+    image: '/New folder/boy_.svg',
+    objectPosition: '30% center',
   },
   {
     slug: 'heritage-foods',

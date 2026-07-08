@@ -9,7 +9,6 @@ import {
   Truck,
 } from 'lucide-react';
 
-import { ThemeToggle } from '@/components/providers/theme-toggle';
 import {
   Badge,
   Button,
@@ -46,7 +45,6 @@ export default function DesignSystemPage() {
           <Typography variant="h5" as="span">
             {brand.name} — Design System
           </Typography>
-          <ThemeToggle />
         </Container>
       </header>
 

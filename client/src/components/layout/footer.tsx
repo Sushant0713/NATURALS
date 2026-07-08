@@ -13,18 +13,16 @@ export function Footer() {
       <Container className="py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
+            <Link href={routes.home} className="inline-block translate-y-2">
               <Image
-                src="/catalogue/page-01-img-02.png"
+                src="/logo-clean.png"
                 alt={brand.name}
-                width={48}
-                height={48}
-                className="size-12 rounded-full bg-white/10 object-contain p-1"
+                width={240}
+                height={96}
+                className="h-20 md:h-24 w-auto object-contain brightness-0 invert"
+                style={{ background: 'none' }}
               />
-              <Typography variant="h5" as="span" className="text-white">
-                {brand.name}
-              </Typography>
-            </div>
+            </Link>
             <Typography variant="body-sm" className="text-white/80">
               {brand.tagline}
             </Typography>

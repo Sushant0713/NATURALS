@@ -42,6 +42,20 @@ export const keyframes = {
     '0%, 100%': { opacity: '1' },
     '50%': { opacity: '0.7' },
   },
+  'drop-letter': {
+    '0%': { transform: 'translateY(-150px)', opacity: '0' },
+    '60%': { transform: 'translateY(10px)', opacity: '1' },
+    '80%': { transform: 'translateY(-5px)' },
+    '100%': { transform: 'translateY(0)', opacity: '1' },
+  },
+  'slide-in-left': {
+    from: { opacity: '0', transform: 'translateX(-120px)' },
+    to: { opacity: '1', transform: 'translateX(0)' },
+  },
+  'slide-in-right': {
+    from: { opacity: '0', transform: 'translateX(120px)' },
+    to: { opacity: '1', transform: 'translateX(0)' },
+  },
 } as const;
 
 export const animations = {
@@ -52,4 +66,7 @@ export const animations = {
   'scale-in': 'scale-in 0.25s ease-out',
   shimmer: 'shimmer 2s linear infinite',
   'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+  'drop-letter': 'drop-letter 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both',
+  'slide-in-left': 'slide-in-left 1.5s cubic-bezier(0.16, 1, 0.3, 1) both',
+  'slide-in-right': 'slide-in-right 1.5s cubic-bezier(0.16, 1, 0.3, 1) both',
 } as const;

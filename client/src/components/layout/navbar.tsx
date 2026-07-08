@@ -9,8 +9,7 @@ import { useEffect, useState } from 'react';
 import { MiniCart } from '@/components/cart/mini-cart';
 import { useAuth } from '@/components/providers/auth-provider';
 import { useCart } from '@/components/providers/cart-provider';
-import { ThemeToggle } from '@/components/providers/theme-toggle';
-import { Button, Container, Icon } from '@/components/ui';
+import { Button, buttonVariants, Container, Icon } from '@/components/ui';
 import { brand } from '@/constants/brand';
 import { routes } from '@/constants/routes';
 import { cn } from '@/lib/utils';
@@ -24,7 +23,7 @@ const navLinks = [
 export function Navbar() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
-  const { totals, isHydrated, toggleMiniCart } = useCart();
+  const { totals, isHydrated } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -106,12 +105,10 @@ export function Navbar() {
                 <Icon icon={User} size="md" />
               </Button>
             </Link>
-            <Button
-              variant="ghost"
-              size="icon-sm"
+            <Link
+              href={routes.cart}
+              className={cn(buttonVariants({ variant: 'ghost', size: 'icon-sm' }), 'relative')}
               aria-label="Cart"
-              className="relative"
-              onClick={toggleMiniCart}
             >
               <Icon icon={ShoppingCart} size="md" />
               {isHydrated && totals.itemCount > 0 && (
@@ -119,8 +116,7 @@ export function Navbar() {
                   {totals.itemCount > 9 ? '9+' : totals.itemCount}
                 </span>
               )}
-            </Button>
-            <ThemeToggle />
+            </Link>
             <Button
               variant="ghost"
               size="icon-sm"
